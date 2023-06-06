@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className="bigTitle">
-        <h1>Note Organizer</h1>
+        <h1>Not Düzenleyicisi</h1>
       </div>
       <NoteForm />
       <NoteList />
