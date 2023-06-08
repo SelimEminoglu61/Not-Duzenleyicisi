@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { Form, FlexDiv } from "./styleNoteForm";
 
-function NoteForm() {
-  const [newInput, setNewInput] = useState("");
-  const [newBodyInput, setNewBodyInput] = useState("");
+function NoteForm({ getInfos, newTitle, setNewTitle, newBody, setNewBody }) {
+  const handleChangeTitle = (e) => {
+    setNewTitle(e.target.value);
+  };
 
-  const handleChange = (e) => {
-    setNewInput(e.target.value);
-    setNewBodyInput(e.target.value);
+  const handleChangeBody = (e) => {
+    setNewBody(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -14,32 +14,37 @@ function NoteForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flexDiv">
-        <label htmlFor="inputTitle">Not Başlığı: </label>
+    <Form onSubmit={handleSubmit}>
+      <FlexDiv>
+        <label htmlFor="inputTitle">Not Başlığı</label>
         <input
           id="inputTitle"
           type="text"
           placeholder="Yeni Not Girin"
-          onChange={handleChange}
-          value={newInput}
+          onChange={handleChangeTitle}
+          value={newTitle}
         />
-      </div>
-      <div className="flexDiv2">
-        <label>Not İçeriği: </label>
+      </FlexDiv>
+      <FlexDiv>
+        <label>Not İçeriği</label>
         <textarea
           rows={10}
           cols={15}
-          required
           placeholder="Notunuzu Giriniz"
           maxLength={500}
           style={{ resize: "none" }}
-          onChange={handleChange}
-          value={newBodyInput}
+          onChange={handleChangeBody}
+          value={newBody}
         />
-      </div>
-      <button>Yeni Not Ekle</button>
-    </form>
+      </FlexDiv>
+      <button
+        onClick={() => {
+          getInfos(newTitle, newBody);
+        }}
+      >
+        Yeni Not Ekle
+      </button>
+    </Form>
   );
 }
 
