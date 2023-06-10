@@ -20,3 +20,8 @@ export const FlexDiv = styled.div`
     color: #1a1a1a;
   }
 `;
+
+export const NullType = styled.h4`
+  margin-top: 0;
+  color: red;
+`;

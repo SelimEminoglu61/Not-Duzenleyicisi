@@ -1,6 +1,14 @@
-import { Form, FlexDiv } from "./styleNoteForm";
+import { Form, FlexDiv, NullType } from "./styleNoteForm";
+import PropTypes from "prop-types";
 
-function NoteForm({ getInfos, newTitle, setNewTitle, newBody, setNewBody }) {
+function NoteForm({
+  getInfos,
+  newTitle,
+  setNewTitle,
+  newBody,
+  setNewBody,
+  isNull,
+}) {
   const handleChangeTitle = (e) => {
     setNewTitle(e.target.value);
   };
@@ -44,8 +52,22 @@ function NoteForm({ getInfos, newTitle, setNewTitle, newBody, setNewBody }) {
       >
         Yeni Not Ekle
       </button>
+      {isNull && (
+        <div>
+          <NullType>Lütfen Boş Yer Bırakmayınız!!</NullType>
+        </div>
+      )}
     </Form>
   );
 }
+
+NoteForm.propTypes = {
+  getInfos: PropTypes.func.isRequired,
+  newTitle: PropTypes.string,
+  newBody: PropTypes.string,
+  setNewTitle: PropTypes.func.isRequired,
+  setNewBody: PropTypes.func.isRequired,
+  isNull: PropTypes.bool.isRequired,
+};
 
 export default NoteForm;
