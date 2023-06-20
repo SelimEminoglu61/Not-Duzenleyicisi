@@ -18,7 +18,7 @@ function App() {
       setIsNull(true);
     } else {
       const newNote = {
-        id: Date.now(),
+        id: crypto.randomUUID(),
         title: newTitle.trim(),
         body: newBody.trim(),
       };
@@ -29,6 +29,12 @@ function App() {
       setNoteArr(newArr);
       addLocalStorage(newArr);
     }
+  }
+
+  function deleteNote(id) {
+    const newArr = noteArr.filter((note) => id != note.id);
+    setNoteArr(newArr);
+    addLocalStorage(newArr);
   }
 
   useEffect(() => {
@@ -50,7 +56,10 @@ function App() {
         setNewBody={setNewBody}
         isNull={isNull}
       />
-      <NoteList noteList={JSON.parse(localStorage.getItem("notes"))} />
+      <NoteList
+        noteList={JSON.parse(localStorage.getItem("notes"))}
+        deleteNote={deleteNote}
+      />
     </>
   );
 }

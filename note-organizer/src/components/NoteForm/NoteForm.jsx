@@ -1,4 +1,10 @@
-import { Form, FlexDiv, NullType } from "./styleNoteForm";
+import {
+  Form,
+  FlexDiv,
+  NullType,
+  İnputTitle,
+  İnputBody,
+} from "./styleNoteForm";
 import PropTypes from "prop-types";
 
 function NoteForm({
@@ -25,7 +31,7 @@ function NoteForm({
     <Form onSubmit={handleSubmit}>
       <FlexDiv>
         <label htmlFor="inputTitle">Not Başlığı</label>
-        <input
+        <İnputTitle
           id="inputTitle"
           type="text"
           placeholder="Yeni Not Girin"
@@ -35,7 +41,7 @@ function NoteForm({
       </FlexDiv>
       <FlexDiv>
         <label>Not İçeriği</label>
-        <textarea
+        <İnputBody
           rows={10}
           cols={15}
           placeholder="Notunuzu Giriniz"

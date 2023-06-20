@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
   button {
     padding: 0 1rem;
     margin: 1rem auto;
@@ -24,4 +27,13 @@ export const FlexDiv = styled.div`
 export const NullType = styled.h4`
   margin-top: 0;
   color: red;
+`;
+
+export const İnputTitle = styled.input`
+  width: 261px;
+  height: 21px;
+`;
+
+export const İnputBody = styled.textarea`
+  width: 261px;
 `;
