@@ -8,6 +8,7 @@ function App() {
   const [newBody, setNewBody] = useState("");
   const [noteArr, setNoteArr] = useState([]);
   const [isNull, setIsNull] = useState(false);
+  const [isChanged, setIsChanged] = useState(false);
 
   async function addLocalStorage(newValue) {
     localStorage.setItem("notes", JSON.stringify(newValue));
@@ -55,10 +56,12 @@ function App() {
         setNewTitle={setNewTitle}
         setNewBody={setNewBody}
         isNull={isNull}
+        isChanged={isChanged}
       />
       <NoteList
         noteList={JSON.parse(localStorage.getItem("notes"))}
         deleteNote={deleteNote}
+        setIsChanged={setIsChanged}
       />
     </>
   );

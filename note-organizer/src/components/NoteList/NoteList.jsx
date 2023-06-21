@@ -8,10 +8,10 @@ import {
   ListDiv,
 } from "./styleNoteList";
 
-function NoteList({ noteList, deleteNote }) {
+function NoteList({ noteList, deleteNote, setIsChanged }) {
   return (
     <ListDiv>
-      {noteList && <h4>Henüz Not Yok</h4>}
+      {noteList.length == 0 && <h4>Henüz Not Yok</h4>}
       {noteList &&
         noteList.map((note) => {
           return (
@@ -19,7 +19,13 @@ function NoteList({ noteList, deleteNote }) {
               <ListH4>{note.title}</ListH4>
               <ListP>{note.body}</ListP>
               <ButtonDiv>
-                <ListButton>Güncelle</ListButton>
+                <ListButton
+                  onClick={() => {
+                    setIsChanged(true);
+                  }}
+                >
+                  Güncelle
+                </ListButton>
                 <ListButton
                   onClick={() => {
                     deleteNote(note.id);
@@ -38,6 +44,7 @@ function NoteList({ noteList, deleteNote }) {
 NoteList.propTypes = {
   noteList: PropTypes.array,
   deleteNote: PropTypes.func,
+  setIsChanged: PropTypes.func,
 };
 
 export default NoteList;
