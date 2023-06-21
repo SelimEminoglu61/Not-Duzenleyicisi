@@ -11,24 +11,26 @@ import {
 function NoteList({ noteList, deleteNote }) {
   return (
     <ListDiv>
-      {noteList.map((note) => {
-        return (
-          <BackgroundDiv key={note.id}>
-            <ListH4>{note.title}</ListH4>
-            <ListP>{note.body}</ListP>
-            <ButtonDiv>
-              <ListButton>Güncelle</ListButton>
-              <ListButton
-                onClick={() => {
-                  deleteNote(note.id);
-                }}
-              >
-                Sil
-              </ListButton>
-            </ButtonDiv>
-          </BackgroundDiv>
-        );
-      })}
+      {noteList && <h4>Henüz Not Yok</h4>}
+      {noteList &&
+        noteList.map((note) => {
+          return (
+            <BackgroundDiv key={note.id}>
+              <ListH4>{note.title}</ListH4>
+              <ListP>{note.body}</ListP>
+              <ButtonDiv>
+                <ListButton>Güncelle</ListButton>
+                <ListButton
+                  onClick={() => {
+                    deleteNote(note.id);
+                  }}
+                >
+                  Sil
+                </ListButton>
+              </ButtonDiv>
+            </BackgroundDiv>
+          );
+        })}
     </ListDiv>
   );
 }
