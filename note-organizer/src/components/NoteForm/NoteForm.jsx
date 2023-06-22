@@ -15,6 +15,8 @@ function NoteForm({
   setNewBody,
   isNull,
   isChanged,
+  updateNoteObj,
+  updateInfos,
 }) {
   const handleChangeTitle = (e) => {
     setNewTitle(e.target.value);
@@ -77,7 +79,7 @@ function NoteForm({
               type="text"
               placeholder="Yeni Not Girin"
               onChange={handleChangeTitle}
-              value={newTitle}
+              value={updateNoteObj.title}
             />
           </FlexDiv>
           <FlexDiv>
@@ -89,12 +91,16 @@ function NoteForm({
               maxLength={500}
               style={{ resize: "none" }}
               onChange={handleChangeBody}
-              value={newBody}
+              value={updateNoteObj.body}
             />
           </FlexDiv>
           <button
             onClick={() => {
-              getInfos(newTitle, newBody);
+              updateInfos(
+                updateNoteObj.id,
+                updateNoteObj.title,
+                updateNoteObj.body
+              );
             }}
           >
             Notu Güncelle
@@ -118,6 +124,8 @@ NoteForm.propTypes = {
   setNewBody: PropTypes.func.isRequired,
   isNull: PropTypes.bool.isRequired,
   isChanged: PropTypes.bool.isRequired,
+  updateNoteObj: PropTypes.object,
+  updateInfos: PropTypes.func.isRequired,
 };
 
 export default NoteForm;

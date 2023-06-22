@@ -8,10 +8,10 @@ import {
   ListDiv,
 } from "./styleNoteList";
 
-function NoteList({ noteList, deleteNote, setIsChanged }) {
+function NoteList({ noteList, deleteNote, setIsChanged, updateDisplayNote }) {
   return (
     <ListDiv>
-      {noteList.length == 0 && <h4>Henüz Not Yok</h4>}
+      {noteList.length == 0 && <ListH4>Henüz Not Yok</ListH4>}
       {noteList &&
         noteList.map((note) => {
           return (
@@ -22,6 +22,7 @@ function NoteList({ noteList, deleteNote, setIsChanged }) {
                 <ListButton
                   onClick={() => {
                     setIsChanged(true);
+                    updateDisplayNote(note.id, note.title, note.body);
                   }}
                 >
                   Güncelle
@@ -45,6 +46,7 @@ NoteList.propTypes = {
   noteList: PropTypes.array,
   deleteNote: PropTypes.func,
   setIsChanged: PropTypes.func,
+  updateDisplayNote: PropTypes.func,
 };
 
 export default NoteList;

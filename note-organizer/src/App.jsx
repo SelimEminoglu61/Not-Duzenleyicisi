@@ -9,6 +9,7 @@ function App() {
   const [noteArr, setNoteArr] = useState([]);
   const [isNull, setIsNull] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
+  const [updateNoteObj, setUpdateNoteObj] = useState({});
 
   async function addLocalStorage(newValue) {
     localStorage.setItem("notes", JSON.stringify(newValue));
@@ -38,6 +39,20 @@ function App() {
     addLocalStorage(newArr);
   }
 
+  function updateDisplayNote(id, title, body) {
+    const newObj = { id: id, title: title, body: body };
+    setUpdateNoteObj(newObj);
+  }
+
+  function updateInfos(id, title, body) {
+    let currentList = JSON.parse(localStorage.getItem("notes"));
+    currentList = currentList.filter((item) => id != item.id);
+
+    const updateobj = { id: id, title: title, body: body };
+    currentList = [...currentList, updateobj];
+    addLocalStorage(currentList);
+  }
+
   useEffect(() => {
     if (!localStorage.getItem("notes")) {
       localStorage.setItem("notes", JSON.stringify([]));
@@ -57,11 +72,14 @@ function App() {
         setNewBody={setNewBody}
         isNull={isNull}
         isChanged={isChanged}
+        updateNoteObj={updateNoteObj}
+        updateInfos={updateInfos}
       />
       <NoteList
         noteList={JSON.parse(localStorage.getItem("notes"))}
         deleteNote={deleteNote}
         setIsChanged={setIsChanged}
+        updateDisplayNote={updateDisplayNote}
       />
     </>
   );
