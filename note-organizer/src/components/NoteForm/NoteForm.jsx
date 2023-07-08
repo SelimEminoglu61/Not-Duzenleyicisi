@@ -13,10 +13,15 @@ function NoteForm({
   setNewTitle,
   newBody,
   setNewBody,
+  updateBody,
+  updateTitle,
+  setUpdateBody,
+  setUpdateTitle,
   isNull,
   isChanged,
   updateNoteObj,
   updateInfos,
+  setIsChanged,
 }) {
   const handleChangeTitle = (e) => {
     setNewTitle(e.target.value);
@@ -24,6 +29,14 @@ function NoteForm({
 
   const handleChangeBody = (e) => {
     setNewBody(e.target.value);
+  };
+
+  const handleChangeUpdateTitle = (e) => {
+    setUpdateTitle(e.target.value);
+  };
+
+  const handleChangeUpdateBody = (e) => {
+    setUpdateBody(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -78,8 +91,8 @@ function NoteForm({
               id="inputTitle"
               type="text"
               placeholder="Yeni Not Girin"
-              onChange={handleChangeTitle}
-              value={updateNoteObj.title}
+              onChange={handleChangeUpdateTitle}
+              value={updateTitle}
             />
           </FlexDiv>
           <FlexDiv>
@@ -90,17 +103,14 @@ function NoteForm({
               placeholder="Notunuzu Giriniz"
               maxLength={500}
               style={{ resize: "none" }}
-              onChange={handleChangeBody}
-              value={updateNoteObj.body}
+              onChange={handleChangeUpdateBody}
+              value={updateBody}
             />
           </FlexDiv>
           <button
             onClick={() => {
-              updateInfos(
-                updateNoteObj.id,
-                updateNoteObj.title,
-                updateNoteObj.body
-              );
+              updateInfos(updateNoteObj.id, updateTitle, updateBody);
+              setIsChanged(false);
             }}
           >
             Notu Güncelle
@@ -120,12 +130,17 @@ NoteForm.propTypes = {
   getInfos: PropTypes.func.isRequired,
   newTitle: PropTypes.string,
   newBody: PropTypes.string,
+  updateTitle: PropTypes.string,
+  updateBody: PropTypes.string,
   setNewTitle: PropTypes.func.isRequired,
   setNewBody: PropTypes.func.isRequired,
+  setUpdateTitle: PropTypes.func.isRequired,
+  setUpdateBody: PropTypes.func.isRequired,
   isNull: PropTypes.bool.isRequired,
   isChanged: PropTypes.bool.isRequired,
   updateNoteObj: PropTypes.object,
   updateInfos: PropTypes.func.isRequired,
+  setIsChanged: PropTypes.func,
 };
 
 export default NoteForm;

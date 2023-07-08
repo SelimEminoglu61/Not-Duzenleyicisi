@@ -6,10 +6,12 @@ import NoteList from "./components/NoteList/NoteList";
 function App() {
   const [newTitle, setNewTitle] = useState("");
   const [newBody, setNewBody] = useState("");
+  const [updateNoteObj, setUpdateNoteObj] = useState({});
+  const [updateTitle, setUpdateTitle] = useState("");
+  const [updateBody, setUpdateBody] = useState("");
   const [noteArr, setNoteArr] = useState([]);
   const [isNull, setIsNull] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
-  const [updateNoteObj, setUpdateNoteObj] = useState({});
 
   async function addLocalStorage(newValue) {
     localStorage.setItem("notes", JSON.stringify(newValue));
@@ -42,6 +44,8 @@ function App() {
   function updateDisplayNote(id, title, body) {
     const newObj = { id: id, title: title, body: body };
     setUpdateNoteObj(newObj);
+    setUpdateTitle(newObj.title);
+    setUpdateBody(newObj.body);
   }
 
   function updateInfos(id, title, body) {
@@ -70,8 +74,13 @@ function App() {
         newBody={newBody}
         setNewTitle={setNewTitle}
         setNewBody={setNewBody}
+        updateTitle={updateTitle}
+        updateBody={updateBody}
+        setUpdateTitle={setUpdateTitle}
+        setUpdateBody={setUpdateBody}
         isNull={isNull}
         isChanged={isChanged}
+        setIsChanged={setIsChanged}
         updateNoteObj={updateNoteObj}
         updateInfos={updateInfos}
       />
